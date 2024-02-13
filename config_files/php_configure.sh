@@ -1,5 +1,5 @@
 #!/bin/ash
-path_php_ini="/etc/php81/php.ini"
+path_php_ini="/etc/php83/php.ini"
 TIMEZONE="Europe/Berlin"
 
 sed -i "s|display_errors\s*=\s*Off|display_errors = ${PHP_DISPLAY_ERRORS}|i" $path_php_ini

@@ -1,7 +1,7 @@
 # Includes .gitlab-ci.yml-vars
 
 variables:
-  CI_REGISTRY_IMAGE: 'mikrotik-alp_rc_nginx_php81'
+  CI_REGISTRY_IMAGE: 'mikrotik-alp_rc_nginx_php83'
   
   RUNNER_TAGS: 'arm64,docker,homenet'
   DIND_TAG: 'docker:25.0.0-dind'

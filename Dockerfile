@@ -1,5 +1,5 @@
 #
-# Dockerfile for alpine-linux-rc-nginx-php81 mikrotik-docker-image
+# Dockerfile for alpine-linux-rc-nginx-php83 mikrotik-docker-image
 # (C) 2023-2024 DL7DET
 #
 
@@ -13,15 +13,15 @@ ARG ALPINE_VERSION=${CI_LINUX_VERSION}
 
 # Set Metadata for docker-image
 LABEL maintainer="DL7DET <detlef@lampart.de>" \
-    org.label-schema.url="https://cb3.lampart-web.de/internal/docker-projects/mikrotik-docker-images/mikrotik-alp_rc_nginx_php81" \
+    org.label-schema.url="https://cb3.lampart-web.de/internal/docker-projects/mikrotik-docker-images/mikrotik-alp_rc_nginx_php83" \
     org.label-schema.version=${APP_VERSION} \
     org.label-schema.version-devel=${DEVEL_VERSION} \
     org.label-schema.build-date=${BUILD} \
     org.label-schema.version_alpine=${ALPINE_VERSION} \
-    org.label-schema.vcs-url="https://cb3.lampart-web.de/internal/docker-projects/mikrotik-docker-images/mikrotik-alp_rc_nginx_php81.git" \
+    org.label-schema.vcs-url="https://cb3.lampart-web.de/internal/docker-projects/mikrotik-docker-images/mikrotik-alp_rc_nginx_php83.git" \
     org.label-schema.vcs-ref=${VCS_REF} \
     org.label-schema.docker.dockerfile="/Dockerfile" \
-    org.label-schema.description="alpine-linux-rc-nginx-php81 mikrotik-docker-image" \
+    org.label-schema.description="alpine-linux-rc-nginx-php83 mikrotik-docker-image" \
     org.label-schema.schema-version="1.0"
 
 RUN echo 'https://ftp.halifax.rwth-aachen.de/alpine/v3.19/main/' >> /etc/apk/repositories \
@@ -61,10 +61,10 @@ RUN apk update && \
 RUN apk update && \
     apk add --no-cache bash build-base gcc wget git autoconf libmcrypt-dev libzip-dev zip \
     g++ make openssl-dev \
-    php81 php81-fpm php81-common \
-    php81-openssl \
-    php81-pdo_mysql \
-    php81-mbstring
+    php83 php83-fpm php83-common \
+    php83-openssl \
+    php83-pdo_mysql \
+    php83-mbstring
     
 RUN apk update && \
     apk --no-cache add nginx tzdata
@@ -75,8 +75,8 @@ COPY ./config_files/first_start.sh /sbin/
 
 COPY ./config_files/php_configure.sh /sbin/
 COPY ./config_files/nginx.new.conf /etc/nginx/
-COPY ./config_files/php-fpm.new.conf /etc/php81/
-COPY ./config_files/www.new.conf /etc/php81/php-fpm.d/
+COPY ./config_files/php-fpm.new.conf /etc/php83/
+COPY ./config_files/www.new.conf /etc/php83/php-fpm.d/
 COPY ./config_files/php-fpm81.sh /etc/profile.d/
 COPY ./config_files/index.html /root/
 COPY ./config_files/index.php /root/
