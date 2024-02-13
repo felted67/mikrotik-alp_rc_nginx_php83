@@ -77,7 +77,7 @@ COPY ./config_files/php_configure.sh /sbin/
 COPY ./config_files/nginx.new.conf /etc/nginx/
 COPY ./config_files/php-fpm.new.conf /etc/php83/
 COPY ./config_files/www.new.conf /etc/php83/php-fpm.d/
-COPY ./config_files/php-fpm81.sh /etc/profile.d/
+COPY ./config_files/php-fpm83.sh /etc/profile.d/
 COPY ./config_files/index.html /root/
 COPY ./config_files/index.php /root/
 COPY ./config_files/phpinfo.php /root/
