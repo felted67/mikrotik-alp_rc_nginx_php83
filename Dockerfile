@@ -3,26 +3,36 @@
 # (C) 2023-2024 DL7DET
 #
 
-FROM --platform=$TARGETPLATFORM alpine:3.20.2 AS base
+ARG ALPINE_VERSION
+FROM --platform=$TARGETPLATFORM $ALPINE_VERSION AS base
 
-# Preset Metadata parameters
+# Preset Metadata parameters and build-arg parameters
 ARG BUILD
-ARG APP_VERSION=${CI_IMAGE_VERSION}
-ARG DEVEL_VERSION=${CI_DEVEL_VERSION}
-ARG ALPINE_VERSION=${CI_LINUX_VERSION}
+ARG PROD_VERSION
+ARG DEVEL_VERSION
+ARG ALPINE_VERSION
+ARG LINUX_VERSION
+ARG COMMIT_SHA
+ENV HOME=/home/$USER
 
 # Set Metadata for docker-image
-LABEL maintainer="DL7DET <detlef@lampart.de>" \
-    org.label-schema.url="https://cb3.lampart-web.de/internal/docker-projects/mikrotik-docker-images/mikrotik-alp_rc_nginx_php83" \
-    org.label-schema.version=${APP_VERSION} \
-    org.label-schema.version-devel=${DEVEL_VERSION} \
-    org.label-schema.build-date=${BUILD} \
-    org.label-schema.version_alpine=${ALPINE_VERSION} \
-    org.label-schema.vcs-url="https://cb3.lampart-web.de/internal/docker-projects/mikrotik-docker-images/mikrotik-alp_rc_nginx_php83.git" \
-    org.label-schema.vcs-ref=${VCS_REF} \
-    org.label-schema.docker.dockerfile="/Dockerfile" \
-    org.label-schema.description="alpine-linux-rc-nginx-php83 mikrotik-docker-image" \
-    org.label-schema.schema-version="1.0"
+LABEL org.opencontainers.image.authors="DL7DET <detlef@lampart.de>" 
+LABEL org.opencontainers.image.licenses="MIT License"
+LABEL org.label-schema.vendor="DL7DET <detlef@lampart.de>"
+LABEL org.label-schema.name="mikrotik-alp_rc_nginx_php83"
+LABEL org.label-schema.url="https://cb3.lampart-web.de/internal/docker-projects/mikrotik-docker-images/mikrotik-alp_rc_nginx_php83"  
+LABEL org.label-schema.version=$LINUX_VERSION-$PROD_VERSION 
+LABEL org.label-schema.version-prod=$PROD_VERSION 
+LABEL org.label-schema.version-devel=$DEVEL_VERSION 
+LABEL org.label-schema.build-date=$BUILD 
+LABEL org.label-schema.version_alpine_version=$ALPINE_VERSION 
+LABEL org.label-schema.vcs-url="https://cb3.lampart-web.de/internal/docker-projects/mikrotik-docker-images/mikrotik-alp_rc_nginx_php83.git" 
+LABEL org.label-schema.vcs-ref=$COMMIT_SHA 
+LABEL org.label-schema.docker.dockerfile="/Dockerfile" 
+LABEL org.label-schema.description="alpine-linux-rc-nginx-php83 mikrotik-docker-image" 
+LABEL org.label-schema.usage="N.N." 
+LABEL org.label-schema.url="N.N." 
+LABEL org.label-schema.schema-version="1.0"
 
 RUN echo 'https://ftp.halifax.rwth-aachen.de/alpine/v3.20/main/' >> /etc/apk/repositories \
     && echo 'https://ftp.halifax.rwth-aachen.de/alpine/v3.20/community' >> /etc/apk/repositories \
