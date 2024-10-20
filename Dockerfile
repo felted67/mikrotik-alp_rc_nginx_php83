@@ -66,7 +66,7 @@ RUN apk add --no-cache openrc \
     && sed -i 's/VSERVER/DOCKER/Ig' /lib/rc/sh/init.sh
 
 RUN apk update && \
-    apk add --no-cache openssh mc unzip bzip2 screen wget curl iptraf-ng htop
+    apk add --no-cache openssh mc unzip bzip2 screen wget curl iptraf-ng htop eudev
 
 RUN apk update && \
     apk add --no-cache bash build-base gcc wget git autoconf libmcrypt-dev libzip-dev zip \
@@ -92,7 +92,7 @@ COPY ./config_files/index.html /root/
 COPY ./config_files/index.php /root/
 COPY ./config_files/phpinfo.php /root/
 
-RUN chown root:root /etc/init.d/auto_init && chmod 0755 /etc/init.d/auto_init
+RUN chown root:root /etc/init.d/auto_init && chmod 0700 /etc/init.d/auto_init
 RUN chown root:root /sbin/first_start.sh && chmod 0700 /sbin/first_start.sh
 RUN chown root:root /sbin/auto_init.sh && chmod 0700 /sbin/auto_init.sh
 
